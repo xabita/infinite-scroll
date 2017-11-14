@@ -24,6 +24,8 @@ from blog import views
 
 urlpatterns = [
 	url(r'^$', views.home, name='home'),
+	url(r'^blog/$', views.ArticlesView.as_view(), name='blog'),
+
 	url(r'^admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
