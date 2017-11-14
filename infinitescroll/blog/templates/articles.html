@@ -1,21 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-Infinite
   <div class="infinite-container">
-    {% for number in numbers %}
-      <div class="infinite-item">{{ number }}</div>
+    {% for article in articles %}
+      <div class="infinite-item">
+        <h3>{{ article.title }}</h3>
+        <p>
+          <small>{{ article.author }} / {{ article.date }}</small>
+        </p>
+        <p>{{ article.body|truncatechars:100 }}</p>
+      </div>
     {% endfor %}
   </div>
-
-  {% if numbers.has_next %}
-    <a class="infinite-more-link" href="?page={{ numbers.next_page_number }}">More</a>
-  {% endif %}
 
   <div class="loading" style="display: none;">
     Loading...
   </div>
+
+  {% if page_obj.has_next %}
+    <a class="infinite-more-link" href="?page={{ articles.next_page_number }}">More</a>
+  {% endif %}
 
   <script>
     var infinite = new Waypoint.Infinite({
